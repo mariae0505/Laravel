@@ -1,7 +1,7 @@
 @extends('layouts.plantillabase')
 
 @section('contenidohijos')
-<div class="container">
+
 <h2>CREAR REGISTROS </h2>
 
 <form action="/abogados" method="post" ">
@@ -33,4 +33,3 @@
 
 
 @endsection
-</div>

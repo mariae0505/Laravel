@@ -1,14 +1,18 @@
 @extends('layouts.plantillabase')
 
+
+
+@section('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+@endsection 
+
 @section('contenidohijos')
 
-<div class="container">
-<h1> vista de index contenidohijossss</h1>
-<a href="abogados/create" class="btn btn-primary">CREAR ABOGADO</a>
+<a href="abogados/create" class="btn btn-primary mb-3">CREAR ABOGADO</a>
 
-<table class="table table-center table-dark table-striped mt-4">
+<table id="abogados" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
 
-    <thead>
+    <thead class="bg-prymary text-white" >
         <tr>
             <th>ID</th>
             <th>ID TERCERO</th>
@@ -52,7 +56,19 @@
 
 </table>
 
+    @section('js')
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
 
+    <script>
+        $(document).ready( function () {
+            $('#abogados').DataTable({
+                "lengthMenu": [[5,10,50,-1],[5,10,50,"Todos"]]
+
+            });
+        } );
+    </script>
+    @endsection
 @endsection
-</div>
