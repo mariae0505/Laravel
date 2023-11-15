@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Abogado extends Model
 {
-    use HasFactory;
+    use HasFactory; 
+    
+    public function terceros(){
+    return $this->belongsTo(Tercero::class,'tercero_id');
+    }
+
 }

@@ -26,7 +26,7 @@
             @foreach($abogados as $abogado)
             <tr>
                 <td>{{$abogado->id}} </td>
-                <td>{{$abogado->tercero_id}}</td>
+                <td>{{$abogado->terceros->primernombre}} {{$abogado->terceros->primerapellido}}</td>
                 <td>{{$abogado->maximoprocesos}}</td>
                 <td>{{$abogado->tarjeta}}</td>
                 <td>{{$abogado->observaciones}}</td>
