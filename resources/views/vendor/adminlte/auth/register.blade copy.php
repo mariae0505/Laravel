@@ -15,7 +15,7 @@
 
 @section('auth_body')
     <form action="{{ $register_url }}" method="post">
-        @csrf
+    @csrf
 
         {{-- Name field --}}
         <div class="input-group mb-3">
