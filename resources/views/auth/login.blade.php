@@ -32,16 +32,17 @@
 
         
         <!-- Sing in  Form -->
-        <section class="sign-in">
+        <section class="sign-in" >
             <div class="container">
-                <div class="signin-content">
+                <div class="signin-content"   >
                     <div class="signin-image">
-                        <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link">Create an account</a>
+                        <figure><img src="/img/portada2.jpg" alt="sing up image"></figure>
+                        <a href="{{ $register_url }}" class="signup-image-link"> {{ __('adminlte::adminlte.register_a_new_membership') }}</a>
+                        
                     </div>
 
                     <div class="signin-form">
-                        <h2 class="form-title">Sign up</h2>
+                        <h2 class="form-title">Ingresar</h2>
                         <form action="{{ $login_url }}" method="post">
                              @csrf
                             <div class="form-group">
