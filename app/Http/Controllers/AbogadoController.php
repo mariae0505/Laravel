@@ -46,7 +46,8 @@ class AbogadoController extends Controller
     {
         //
         $abogados=new Abogado();
-        $abogados->tercero_id = $request->get('tercero_id');
+        //$abogados->tercero_id = $request->get('tercero_id');
+        $abogados->tercero_id =1;
         $abogados->tarjeta = $request->get('tarjeta');
         $abogados->maximoprocesos = $request->get('maximoprocesos');
         $abogados->observaciones = $request->get('observaciones');

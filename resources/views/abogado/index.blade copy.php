@@ -4,18 +4,14 @@
 
 @section('content_header')
 <style>
-    .trash-icono svg {
-        color: rgb(248, 14, 14) !important;
-    }
+ .trash-icono svg{
+    color: rgb(248, 14, 14) !important;
+}
 
-    .pencil-icono svg {
-        color: rgb(7, 7, 248) !important;
-    }
-
-    .content-wrapper {
-        background-color: rgba(255, 255, 255, .8);
-    }
-</style>
+.content-wrapper {
+            background-color: rgba(255,255,255,.8);
+        }
+    </style>
 <h1>El ContentHeader</h1>
 @stop
 
@@ -31,7 +27,7 @@
             <th>MAXIMOPROCEOS</th>
             <th>tarjeta</th>
             <th>OBSERVACION</th>
-            <th class="text-center"> Opciones</th>
+            <th> Opciones</th>
 
         </tr>
     </thead>
@@ -43,25 +39,17 @@
             <td>{{$abogado->maximoprocesos}}</td>
             <td>{{$abogado->tarjeta}}</td>
             <td>{{$abogado->observaciones}}</td>
-            <td class="text-center">
+            <td>
                 <form action="{{ route ('abogados.destroy',$abogado->id)}}" method="POST">
-                       
-                            <a href="/abogados/{{$abogado->id}}/edit" class="btn btn-light btn-small">
-                                <div class="pencil-icono">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                        <path
-                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                        <path fill-rule="evenodd"
-                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                    </svg>
-                                </div>
-
-                            </a>
-                        
-                    
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a href="/abogados/{{$abogado->id}}/edit" class="btn btn-primary btn-small"> Editar</a>
+                        </div>
+                    </div>
                     @csrf
                     @method('DELETE')
+                    <div class="row">
+                        <div class="col-md-2">
                             <button type="submit" class="btn btn-light">
                                 <div class="trash-icono">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -74,8 +62,8 @@
 
                                 </div>
                             </button>
-                        
-                    
+                        </div>
+                    </div>
                 </form>
             </td>
         </tr>
