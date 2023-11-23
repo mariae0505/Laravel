@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Abogado; 
+use App\Models\Tercero; 
+use Illuminate\Support\Facades\Log;
 
 class AbogadoController extends Controller
 {
@@ -45,9 +47,28 @@ class AbogadoController extends Controller
     public function store(Request $request)
     {
         //
+        $terceros= new Tercero();
+        $terceros->identificacion = $request->get('identificacion');
+        $terceros->razonsocial = $request->get('razonsocial');
+        $terceros->primernombre= $request->get('primernombre');
+        $terceros->primerapellido = $request->get('primerapellido');
+        $terceros->segundonombre = $request->get('segundonombre');
+        $terceros->segundoapellido = $request->get('segundoapellido');
+        $terceros->correo = $request->get('correo');
+        $terceros->direccion = $request->get('direccion');
+        $terceros->telefonos = $request->get('telefonos');
+        $terceros->tipopersona = $request->get('tipopersona');
+        $terceros->naturaleza = $request->get('naturaleza');
+        $terceros->tipoidentificacion_id = $request->get('tipoidentificacion_id');
+
+        Log::info($terceros);
+        $terceros->save();
+        $id = Tercero::latest()->first()->id;
+        //Log::info("Compra exitosa - Usuario: {$request->user()->id}, Producto: {$request->product_id}");
+        Log::info("ID {$id}");
         $abogados=new Abogado();
         //$abogados->tercero_id = $request->get('tercero_id');
-        $abogados->tercero_id =1;
+        $abogados->tercero_id =$id;
         $abogados->tarjeta = $request->get('tarjeta');
         $abogados->maximoprocesos = $request->get('maximoprocesos');
         $abogados->observaciones = $request->get('observaciones');
