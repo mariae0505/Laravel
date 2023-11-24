@@ -25,7 +25,17 @@
       <div class="col">
         <div class=" mb-3">
           <label for="" class="form-label">Tipo Documento</label>
-          <input id="tipoidentificacion_id" name="tipoidentificacion_id" type="text" class="form-control" tabindex="1">
+          <select name="" id="tipoidentificacion_id" name="ti poidentificacion_id" class="form-control buscador">
+            <option value=""> -- Seleccione tipo -- </option>
+            @foreach($tipoidentificaciones as $tipoidentificacion)
+
+            <option value="{{ $tipoidentificacion['id'] }}">{{ $tipoidentificacion['descripcion'] }}
+
+            </option>
+            @endforeach
+          </select>
+          {{-- <input id="tipoidentificacion_id" name="tipoidentificacion_id" type="text" class="form-control"
+            tabindex="1"> --}}
         </div>
 
       </div>
@@ -113,8 +123,15 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @stop
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+<script>
+  $(document).ready(function() {
+    $('.buscador').select2();
+});
+</script>
 @stop

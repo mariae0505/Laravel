@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Abogado; 
 use App\Models\Tercero; 
+use App\Models\TipoIdentificacion; 
 use Illuminate\Support\Facades\Log;
 
 class AbogadoController extends Controller
@@ -34,7 +35,10 @@ class AbogadoController extends Controller
      */
     public function create()
     {
-        return view('abogado.create');
+
+        $tipoidentificaciones=TipoIdentificacion::all();
+        return view('abogado.create')->with('tipoidentificaciones',$tipoidentificaciones);
+
         //
     }
 
