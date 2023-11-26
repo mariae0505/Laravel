@@ -7,6 +7,7 @@ use App\Models\Abogado;
 use App\Models\Tercero; 
 use App\Models\TipoIdentificacion; 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Collection;
 
 class AbogadoController extends Controller
 {
@@ -36,8 +37,26 @@ class AbogadoController extends Controller
     public function create()
     {
 
+        $naturaleza= [1,2];
+        $descripcion = ['Natural','Juridica'] ;
+        $naturalezas=   [   ['naturaleza'=>1,'descripcion'=>'Natural'],
+                            ['naturaleza'=>2,'descripcion'=>'Juridica']
+                        ];
+        //$collection = new Collection([$naturaleza, $descripcion]);
+        //$naturalezas  = $collection->collapse();
+        //$naturalezas = ['naturaleza'=>$naturaleza,'descripcion'=>$descripcion];
+        Log::channel('stderr')->info('$naturalezaaaaaas'); 
+         Log::channel('stderr')->info($naturalezas);
+          
+        // Log::channel('stderr')->info($descripcion);
         $tipoidentificaciones=TipoIdentificacion::all();
-        return view('abogado.create')->with('tipoidentificaciones',$tipoidentificaciones);
+        //Log::channel('stderr')->info($tipoidentificaciones);
+       /*  return view('abogado.create')
+                ->with(['tipoidentificaciones'=>$tipoidentificaciones]); */
+
+
+        $tipoidentificaciones=TipoIdentificacion::all();
+        return view('abogado.create')->with('tipoidentificaciones',$tipoidentificaciones)->with('naturalezas',$naturalezas);
 
         //
     }

@@ -18,14 +18,22 @@
       <div class="col">
         <div class=" mb-3">
           <label for="" class="form-label">Naturaleza</label>
-          <input id="naturaleza" name="naturaleza" type="text" class="form-control" tabindex="1">
+          <select name="" id="naturaleza" name="naturaleza" class="form-control buscador">
+            <option value=""> -- Seleccione tipo -- </option>
+            @foreach($naturalezas as $natu)
+
+              <option value="{{ $natu['naturaleza'] }}">{{ $natu['descripcion'] }}
+
+            </option>
+            @endforeach
+          </select>
         </div>
 
       </div>
       <div class="col">
         <div class=" mb-3">
           <label for="" class="form-label">Tipo Documento</label>
-          <select name="" id="tipoidentificacion_id" name="ti poidentificacion_id" class="form-control buscador">
+          <select name="" id="tipoidentificacion_id" name="tipoidentificacion_id" class="form-control buscador">
             <option value=""> -- Seleccione tipo -- </option>
             @foreach($tipoidentificaciones as $tipoidentificacion)
 
