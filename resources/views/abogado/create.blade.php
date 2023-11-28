@@ -2,8 +2,9 @@
 
 @section('title', 'Title create')
 
-@section('Creación de Abogados')
-<h1>ContenHeader h1</h1>
+@section('content_header')
+
+<h1>Creación de Abogados </h1>
 @stop
 
 @section('content')
@@ -47,16 +48,13 @@
         </div>
 
       </div>
-      <div class="col">
-        <div class=" mb-3">
-          <label for="" class="form-label">No.Identificación</label>
-          <input id="identificacion" name="identificacion" type="text" class="form-control" tabindex="1">
-        </div>
-
-      </div>
-
+      
     </div>
-
+    <div class=" mb-3">
+      <label for="" class="form-label">Nro.Identificación</label>
+      <input id="identificacion" name="identificacion" type="text" class="form-control" tabindex="1">
+    </div>
+    
     <div class=" mb-3">
       <label for="" class="form-label">Primer Nombre</label>
       <input id="primernombre" name="primernombre" type="text" class="form-control" tabindex="1">
@@ -86,6 +84,7 @@
   </div>
   <div class="col p-3 ">
 
+    
     <div class=" mb-3">
       <label for="" class="form-label">Dirección</label>
       <input id="direccion" name="direccion" type="text" class="form-control" tabindex="1">
@@ -130,8 +129,10 @@
 @stop
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 <link rel="stylesheet" href="/css/admin_custom.css">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @stop
 
 @section('js')
@@ -140,6 +141,11 @@
 <script>
   $(document).ready(function() {
     $('.buscador').select2();
+    
+    
 });
 </script>
+
+
+
 @stop

@@ -1,3 +1,17 @@
 .trash-icono svg{
     color: rgb(246, 11, 11) !important;
 }
+
+    .trash-icono svg {
+        color: rgb(248, 14, 14) !important;
+    
+    }
+
+    .pencil-icono svg {
+        color: rgb(7, 7, 248) !important;
+    }
+
+    .content-wrapper {
+        background-color: rgba(255, 255, 255, .8);
+    }
+   

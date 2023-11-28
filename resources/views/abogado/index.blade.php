@@ -3,19 +3,7 @@
 @section('title', 'El Title')
 
 @section('content_header')
-<style>
-    .trash-icono svg {
-        color: rgb(248, 14, 14) !important;
-    }
 
-    .pencil-icono svg {
-        color: rgb(7, 7, 248) !important;
-    }
-
-    .content-wrapper {
-        background-color: rgba(255, 255, 255, .8);
-    }
-</style>
 <h1>El ContentHeader</h1>
 @stop
 
@@ -43,7 +31,7 @@
             <td>{{$abogado->maximoprocesos}}</td>
             <td>{{$abogado->tarjeta}}</td>
             <td>{{$abogado->observaciones}}</td>
-            <td class="text-center">
+            <td class="text-center" style="background-color: #E5E4E2; color: #">
                 <form action="{{ route ('abogados.destroy',$abogado->id)}}" method="POST">
                        
                             <a href="/abogados/{{$abogado->id}}/edit" class="btn btn-light btn-small">
@@ -86,7 +74,7 @@
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
-<link rel="stylesheet" href="public/css/estilos.css">
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @stop
 
 @section('js')
