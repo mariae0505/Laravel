@@ -42,20 +42,13 @@ class AbogadoController extends Controller
         $naturalezas=   [   ['naturaleza'=>1,'descripcion'=>'Natural'],
                             ['naturaleza'=>2,'descripcion'=>'Juridica']
                         ];
-        //$collection = new Collection([$naturaleza, $descripcion]);
-        //$naturalezas  = $collection->collapse();
-        //$naturalezas = ['naturaleza'=>$naturaleza,'descripcion'=>$descripcion];
+       
         Log::channel('stderr')->info('$naturalezaaaaaas'); 
          Log::channel('stderr')->info($naturalezas);
           
-        // Log::channel('stderr')->info($descripcion);
+        
         $tipoidentificaciones=TipoIdentificacion::all();
-        //Log::channel('stderr')->info($tipoidentificaciones);
-       /*  return view('abogado.create')
-                ->with(['tipoidentificaciones'=>$tipoidentificaciones]); */
 
-
-        $tipoidentificaciones=TipoIdentificacion::all();
         return view('abogado.create')->with('tipoidentificaciones',$tipoidentificaciones)->with('naturalezas',$naturalezas);
 
         //
@@ -84,11 +77,12 @@ class AbogadoController extends Controller
         $terceros->naturaleza = $request->get('naturaleza');
         $terceros->tipoidentificacion_id = $request->get('tipoidentificacion_id');
 
-        Log::info($terceros);
+      
+        Log::channel('stderr')->info($terceros); 
         $terceros->save();
         $id = Tercero::latest()->first()->id;
-        //Log::info("Compra exitosa - Usuario: {$request->user()->id}, Producto: {$request->product_id}");
-        Log::info("ID {$id}");
+       
+        
         $abogados=new Abogado();
         //$abogados->tercero_id = $request->get('tercero_id');
         $abogados->tercero_id =$id;
@@ -121,8 +115,11 @@ class AbogadoController extends Controller
     {
 
         //
-        $abogado= Abogado::find($id);
-        return view('abogado.edit')->with('abogado', $abogado);
+        $tipoidentificaciones=TipoIdentificacion::all();
+        $abogado= Abogado::with('terceros')->find($id);
+        Log::channel('stderr')->info('ABOGADOOOO'); 
+        Log::channel('stderr')->info($abogado); 
+        return view('abogado.edit')->with('abogado', $abogado)->with('tipoidentificaciones', $tipoidentificaciones);
 
 
     }

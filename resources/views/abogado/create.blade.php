@@ -20,7 +20,7 @@
       <div class="col">
         <div class=" mb-3">
           <label for="" class="form-label">Tipo Documento</label>
-          <select name="" id="tipoidentificacion_id" name="tipoidentificacion_id" class="form-control buscador">
+          <select  id="tipoidentificacion_id" name="tipoidentificacion_id" class="form-control buscador">
             <option value=""> -- Seleccione tipo -- </option>
             @foreach($tipoidentificaciones as $tipoidentificacion)
 
@@ -78,7 +78,7 @@
       <div class="col">
         <div class=" mb-3">
           <label for="" class="form-label">Naturaleza</label>
-          <select name="" id="naturaleza" name="naturaleza" class="form-control buscador">
+          <select  id="naturaleza" name="naturaleza" class="form-control buscador">
             <option value=""> -- Seleccione tipo -- </option>
             @foreach($naturalezas as $natu)
 

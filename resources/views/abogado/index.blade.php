@@ -4,7 +4,7 @@
 
 @section('content_header')
 
-<h1>El ContentHeader</h1>
+<h1>Listado de Abogados</h1>
 @stop
 
 @section('content')
