@@ -113,13 +113,22 @@ class AbogadoController extends Controller
      */
     public function edit($id)
     {
-
+        // $naturaleza= [1,2];
+        // $descripcion = ['Natural','Juridica'] ;
+        $naturalezas=   [   ['naturaleza'=>1,'descripcion'=>'Natural'],
+                            ['naturaleza'=>2,'descripcion'=>'Juridica']
+                        ];
+       
+        Log::channel('stderr')->info('$naturalezaaaaaas'); 
+         Log::channel('stderr')->info($naturalezas);
         //
         $tipoidentificaciones=TipoIdentificacion::all();
         $abogado= Abogado::with('terceros')->find($id);
         Log::channel('stderr')->info('ABOGADOOOO'); 
         Log::channel('stderr')->info($abogado); 
-        return view('abogado.edit')->with('abogado', $abogado)->with('tipoidentificaciones', $tipoidentificaciones);
+        return view('abogado.edit')->with('abogado', $abogado)
+        ->with('tipoidentificaciones', $tipoidentificaciones)
+        ->with('naturalezas', $naturalezas);
 
 
     }
@@ -135,12 +144,31 @@ class AbogadoController extends Controller
     {
         //
         $abogado= Abogado::find($id);
-        $abogado->tercero_id = $request->get('tercero_id');
+        $terceroId=$abogado->tercero_id;
+
         $abogado->tarjeta = $request->get('tarjeta');
         $abogado->maximoprocesos = $request->get('maximoprocesos');
         $abogado->observaciones = $request->get('observaciones');
         
         $abogado->save();
+
+        $terceros= Tercero::find($terceroId);
+
+
+        $terceros->identificacion = $request->get('identificacion');
+        $terceros->razonsocial = $request->get('razonsocial');
+        $terceros->primernombre= $request->get('primernombre');
+        $terceros->primerapellido = $request->get('primerapellido');
+        $terceros->segundonombre = $request->get('segundonombre');
+        $terceros->segundoapellido = $request->get('segundoapellido');
+        $terceros->correo = $request->get('correo');
+        $terceros->direccion = $request->get('direccion');
+        $terceros->telefonos = $request->get('telefonos');
+        $terceros->naturaleza = $request->get('naturaleza');
+        $terceros->tipoidentificacion_id = $request->get('tipoidentificacion_id');
+
+        $terceros->save();
+
         return redirect('/abogados');
 
     }
