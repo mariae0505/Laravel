@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ServidorException;
+use App\Exceptions\JsonException;
+use App\Exceptions\DatosException;
+use App\Exceptions\CustomException;
+
 use Illuminate\Http\Request;
 use App\Models\Abogado; 
 use App\Models\Tercero; 
@@ -63,6 +68,7 @@ class AbogadoController extends Controller
     public function store(Request $request)
     {
         //
+
         $terceros= new Tercero();
         $terceros->identificacion = $request->get('identificacion');
         $terceros->razonsocial = $request->get('razonsocial');
@@ -73,11 +79,10 @@ class AbogadoController extends Controller
         $terceros->correo = $request->get('correo');
         $terceros->direccion = $request->get('direccion');
         $terceros->telefonos = $request->get('telefonos');
-        $terceros->tipopersona = $request->get('tipopersona');
         $terceros->naturaleza = $request->get('naturaleza');
         $terceros->tipoidentificacion_id = $request->get('tipoidentificacion_id');
 
-      
+        try{
         Log::channel('stderr')->info($terceros); 
         $terceros->save();
         $id = Tercero::latest()->first()->id;
@@ -91,6 +96,17 @@ class AbogadoController extends Controller
         $abogados->observaciones = $request->get('observaciones');
         
         $abogados->save();
+
+    } catch(\Exception $e)
+    {
+         //return $e->getMessage();
+        //throw new JsonException("401","mensaje de prueba");
+        //throw new ServidorException();
+        //throw new DatosException();
+        throw new DatosException($e->getCode(),$e->getMessage());
+    }    
+
+
         return redirect('/abogados');
     }
 
@@ -182,8 +198,17 @@ class AbogadoController extends Controller
     public function destroy($id)
     {
         //
-        $abogado= Abogado::find($id);
-        $abogado->delete();
-        return redirect('/abogados');
+        try{
+            $abogado= Abogado::find($id);
+            $abogado->delete();
+            return redirect('/abogados');
+        } catch(\Exception $e)
+        {
+             //return $e->getMessage();
+            //throw new JsonException("401","mensaje de prueba");
+            //throw new ServidorException();
+            //throw new DatosException();
+            throw new DatosException($e->getCode(),$e->getMessage());
+        }    
     }
 }
