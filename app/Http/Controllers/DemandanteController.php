@@ -2,10 +2,31 @@
 
 namespace App\Http\Controllers;
 
+
+
+use App\Exceptions\DatosException;
+
+use App\Models\Demandante; 
+use App\Models\Tercero; 
+use App\Models\TipoIdentificacion; 
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Collection;
+
+
+
 use Illuminate\Http\Request;
 
 class DemandanteController extends Controller
 {
+
+    public function __construct(){
+
+        $this->middleware('auth');
+    }
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +35,18 @@ class DemandanteController extends Controller
     public function index()
     {
         //
+
+        {
+            //
+            $demandantes=Demandante::all();
+            return view('demandante.index')->with('demandantes',$demandantes);
+    
+        }
+
+
+
+
+
     }
 
     /**
@@ -80,5 +113,20 @@ class DemandanteController extends Controller
     public function destroy($id)
     {
         //
+
+        try{
+            $demandante= Demandante::find($id);
+            $demandante->delete();
+            return redirect('/demandantes');
+        } catch(\Exception $e)
+        {
+             //return $e->getMessage();
+            //throw new JsonException("401","mensaje de prueba");
+            //throw new ServidorException();
+            //throw new DatosException();
+            throw new DatosException($e->getCode(),$e->getMessage(),'\demandantes');
+        }    
+
+
     }
 }

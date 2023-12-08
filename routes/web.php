@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::resource('abogados','App\Http\Controllers\AbogadoController' );
-
+Route::resource('demandantes','App\Http\Controllers\DemandanteController' );
 
 Route::middleware([
     'auth:sanctum',

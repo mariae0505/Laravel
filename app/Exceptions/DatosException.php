@@ -13,13 +13,15 @@ class DatosException extends Exception
     protected $code;
 
     protected $message;
+    protected $vista;
 
-    public function __construct($code, $message)
+    public function __construct($code, $message, $vista)
     {
         $this->code = $code;
         $this->message = $message;
+        $this->vista = $vista;
     }
-
+    
 
     public function render($request)
     {
@@ -28,7 +30,7 @@ class DatosException extends Exception
 
         }
         else {
-            $response['message'] = 'NO RECONOCIO 2023 ';
+            $response['message'] = 'Error al Actualizar';
 
         }
 
@@ -38,6 +40,8 @@ class DatosException extends Exception
 
         $response['messagehtml'] = $this->message;
         $response['code'] = $this->code;
+        $response['vista'] = $this->vista;
+
         //$code= (int)$this->code;
         Log::channel('stderr')->info($response);
         return view('errors.2023')->with('respuesta', $response);

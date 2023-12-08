@@ -174,7 +174,7 @@
             </div>
             <p>{{$respuesta['message']}}
             </p>
-            <a href="/abogados" >Regresar</a> 
+            <a href={{$respuesta['vista']}} >Regresar</a> 
         </div>
     </div>
 </body>

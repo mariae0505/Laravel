@@ -319,6 +319,13 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Demandantes',
+            'url'         => 'demandantes',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
         ['header' => 'Configuración de la Cuenta '],
         [
             'text' => 'Perfil',

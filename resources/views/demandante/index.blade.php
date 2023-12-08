@@ -1,40 +1,44 @@
 @extends('adminlte::page')
 
-@section('title', 'El Title')
+@section('title', 'Demandantes')
 
 @section('content_header')
 
-<h1>Listado de Abogados</h1>
+<h1>Listado de Demandantes</h1>
 @stop
 
 @section('content')
-<a href="abogados/create" class="btn btn-primary mb-3">CREAR ABOGADO</a>
+<a href="demandantes/create" class="btn btn-primary mb-3">CREAR DEMANDANTE</a>
 
-<table id="abogados" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
+<table id="demandantes" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
 
     <thead class="bg-primary text-white ">
         <tr>
             <th>ID</th>
-            <th>ABOGADO</th>
-            <th>MAXIMOPROCEOS</th>
-            <th>TARJETA</th>
+            <th>IDENTIFICACION</th>
+            <th>1er APELLIDO</th>
+            <th>2do APELLIDO </th>
+            <th>1er NOMBRE</th>
+            <th>2do NOMBRE</th>
             <th>OBSERVACION</th>
             <th class="text-center"> Opciones</th>
 
         </tr>
     </thead>
     <tbody>
-        @foreach($abogados as $abogado)
+        @foreach($demandantes as $demandante)
         <tr>
-            <td>{{$abogado->id}} </td>
-            <td>{{$abogado->terceros->primernombre}} {{$abogado->terceros->primerapellido}}</td>
-            <td>{{$abogado->maximoprocesos}}</td>
-            <td>{{$abogado->tarjeta}}</td>
-            <td>{{$abogado->observaciones}}</td>
+            <td>{{$demandante->id}} </td>
+            <td>{{$demandante->terceros->identificacion}}</td>
+            <td>{{$demandante->terceros->primerapellido}}</td>
+            <td>{{$demandante->terceros->segundoapellido}} </td>
+            <td>{{$demandante->terceros->primernombre}}  </td>
+            <td>{{$demandante->terceros->segundonombre}} </td>
+            <td>{{$demandante->observaciones}}</td>
             <td class="text-center" style="background-color: #E5E4E2; color: #">
-                <form action="{{ route ('abogados.destroy',$abogado->id)}}" method="POST">
+                <form action="{{ route ('demandantes.destroy',$demandante->id)}}" method="POST">
                        
-                            <a href="/abogados/{{$abogado->id}}/edit" class="btn btn-light btn-small">
+                            <a href="/demandantes/{{$demandante->id}}/edit" class="btn btn-light btn-small">
                                 <div class="pencil-icono">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -84,7 +88,7 @@
 
 <script>
     $(document).ready( function () {
-                $('#abogados').DataTable({
+                $('#demandantes').DataTable({
                     "lengthMenu": [[5,10,50,-1],[5,10,50,"Todos"]]
     
                 });

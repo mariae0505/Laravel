@@ -9,4 +9,9 @@ class Demandante extends Model
 {
     use HasFactory;
     protected $table = "demandantes";
+
+    public function terceros(){
+        return $this->belongsTo(Tercero::class,'tercero_id');
+        }
+    
 }

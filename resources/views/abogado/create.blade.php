@@ -29,6 +29,10 @@
                 </option>
                 @endforeach
               </select>
+              @error('tipoidentificacion_id')
+              {{ $message }}
+                
+              @enderror
               
             </div>
 
@@ -85,6 +89,11 @@
                 </option>
                 @endforeach
               </select>
+
+              @error('naturaleza')
+              {{ $message }}
+                
+              @enderror
             </div>
 
           </div>
@@ -95,6 +104,10 @@
         <div class=" mb-3">
           <label for="" class="form-label">Dirección</label>
           <input id="direccion" name="direccion" type="text" class="form-control" tabindex="1">
+          @error('direccion')
+          {{ $message }}
+            
+          @enderror
         </div>
 
         <div class=" mb-3">
