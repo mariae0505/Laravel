@@ -100,7 +100,7 @@ class AbogadoController extends Controller
         $terceros->naturaleza = $request->get('naturaleza');
         $terceros->tipoidentificacion_id = $request->get('tipoidentificacion_id');
 
-        //try {
+        try {
             Log::channel('stderr')->info($terceros);
             $terceros->save();
             $id = Tercero::latest()->first()->id;
@@ -114,13 +114,13 @@ class AbogadoController extends Controller
             $abogados->observaciones = $request->get('observaciones');
 
             $abogados->save();
-       // } catch (\Exception $e) {
+        } catch (\Exception $e) {
             //return $e->getMessage();
             //throw new JsonException("401","mensaje de prueba");
             //throw new ServidorException();
             //throw new DatosException();
-      //      throw new DatosException($e->getCode(), $e->getMessage(), '\abogados');
-       // }
+            throw new DatosException($e->getCode(), $e->getMessage(), '\abogados');
+        }
 
 
         return redirect('/abogados');
