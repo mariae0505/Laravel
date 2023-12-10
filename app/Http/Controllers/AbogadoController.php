@@ -114,6 +114,7 @@ class AbogadoController extends Controller
             $abogados->observaciones = $request->get('observaciones');
 
             $abogados->save();
+
         } catch (\Exception $e) {
             //return $e->getMessage();
             //throw new JsonException("401","mensaje de prueba");
@@ -211,6 +212,7 @@ class AbogadoController extends Controller
             $terceros->tipoidentificacion_id = $request->get('tipoidentificacion_id');
 
             $terceros->save();
+            notify()->success('Welcome to Laravel Notify ⚡️');
         } catch (\Exception $e) {
 
             throw new DatosException($e->getCode(), $e->getMessage(), '\abogados');
@@ -234,7 +236,7 @@ class AbogadoController extends Controller
         try {
             $abogado = Abogado::find($id);
             $abogado->delete();
-            return redirect('/abogados');
+            return redirect('/abogados')->with('eliminado','ok');
         } catch (\Exception $e) {
             //return $e->getMessage();
             //throw new JsonException("401","mensaje de prueba");

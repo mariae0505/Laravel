@@ -32,7 +32,7 @@
             <td>{{$abogado->tarjeta}}</td>
             <td>{{$abogado->observaciones}}</td>
             <td class="text-center" style="background-color: #E5E4E2; color: #">
-                <form action="{{ route ('abogados.destroy',$abogado->id)}}" method="POST">
+                <form action="{{ route ('abogados.destroy',$abogado->id)}}" method="POST" class="formulario-destroy">
                        
                             <a href="/abogados/{{$abogado->id}}/edit" class="btn btn-light btn-small">
                                 <div class="pencil-icono">
@@ -78,16 +78,56 @@
 @stop
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
-<script>
-    $(document).ready( function () {
-                $('#abogados').DataTable({
-                    "lengthMenu": [[5,10,50,-1],[5,10,50,"Todos"]]
-    
-                });
-            } );
-</script>
+    <script>
+        $(document).ready( function () {
+                    $('#abogados').DataTable({
+                        "lengthMenu": [[5,10,50,-1],[5,10,50,"Todos"]]
+        
+                    });
+                } );
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (session('eliminado')=='ok')
+        <script>
+            Swal.fire({
+                    title: "Eliminado!",
+                    text: "El registro fue eliminado.",
+                    icon: "success"
+                  }); 
+        </script>
+
+    @endif
+    <script>
+        $('.formulario-destroy').submit(function(e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: "Esta seguro?",
+                text: "El proceso no puede reversarse!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, borrar registro",
+                cancelButtonText: "Cancelar"
+
+              }).then((result) => {
+                if (result.isConfirmed) 
+                {
+                  
+                  this.submit();
+                }
+              });
+
+        });
+        {{--    --}}
+    </script>
+
+
 @stop
